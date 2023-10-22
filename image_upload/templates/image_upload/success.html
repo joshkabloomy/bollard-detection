@@ -6,6 +6,7 @@
 <body>
     <h1>Image Upload Success</h1>
     <p>Your image has been successfully uploaded and processed.</p>
+    <img src="data:image/png;base64,{{ processed_image }}" alt="Processed Image">
     <a href="{% url 'image_upload' %}">Upload another image</a>
 </body>
 </html>
