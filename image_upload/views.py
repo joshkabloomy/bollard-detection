@@ -19,7 +19,7 @@ def image_upload(request):
             img = cv2.imread(image_path) #path of image file which we want to detect
 
             # Perform OpenCV processing here (e.g., resizing)
-            bollard_cascade = cv2.CascadeClassifier('./trained_haarscascade/cascade.xml')
+            bollard_cascade = cv2.CascadeClassifier('./trained_haarscascade/haarcascade_bollardv3.xml')
             resized = cv2.resize(img,(400,200))
             resized = img
             gray=cv2.cvtColor(resized,cv2.COLOR_BGR2GRAY)
@@ -32,8 +32,9 @@ def image_upload(request):
             # cv2.imshow('img',resized)
             # cv2.waitKey(0)
             # cv2.destroyAllWindows()
+
             # Save the processed image
-            cv2.imwrite(image_path, img)
+            # cv2.imwrite(image_path, img)
             
             # Convert processed image to a base64-encoded string
             _, buffer = cv2.imencode('.png', img)
