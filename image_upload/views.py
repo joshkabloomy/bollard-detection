@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import ImageUploadForm
 from .models import UploadedImage
+
 import cv2
 import base64
 import io
@@ -50,3 +51,5 @@ def image_upload(request):
 
 def image_upload_success(request):
     return render(request, 'image_upload/success.html')
+
+
