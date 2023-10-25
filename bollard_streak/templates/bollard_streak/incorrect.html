@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Picture</title>
+</head>
+<body>
+    <h1>Guess the Bollard! </h1>
+
+    
+    <p>Incorrect Country. The country was {{country}}!</p>
+    <p>Your bollard streak was {{counter}}!</p></p>
+    <img src="{{data.image_link}}" alt="Image Description" width ="300" height = "200">
+    <br>
+    <button onclick="redirectToAnotherWebsite()">Restart</button>
+
+    <script>
+        function redirectToAnotherWebsite() {
+            var newWebsiteURL = '/bollard_streak'; 
+            window.location.href = newWebsiteURL;
+        }
+    </script>
+
+</body>
+</html>

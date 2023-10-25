@@ -1,20 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Picture</title>
+    <title>Bollard Guesser</title>
 </head>
 <body>
     <h1>Guess the Bollard! </h1>
 
+    
     {% if request.method == 'POST' %}
-        {% if correct %}
-            <p>Correct, it was {{country}}!</p>
-        {% else %}
-            <p>Incorrect Country.</p>
-        {% endif %}
+        <p>Correct, it was {{country}}!</p>
+        <p>Bollard Streak: {{counter}}</p>
     {% endif %}
 
-    <!-- <p>Field 1: {{ data.countries }}</p> -->
     <form method="post">
         {% csrf_token %}
         {{ form.word_to_check.label_tag }}
