@@ -1,3 +1,7 @@
 from django.db import models
 
-# Create your models here.
+class CountryStreak(models.Model):
+    countries = models.CharField(max_length=200)
+    image_link = models.CharField(max_length=200)
+    class Meta: # define what the board name is
+        db_table = 'country_table'

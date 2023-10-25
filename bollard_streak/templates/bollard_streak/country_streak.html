@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Picture</title>
+</head>
+<body>
+    <h1>Guess the Bollard! </h1>
+    <!-- <p>Field 1: {{ data.countries }}</p> -->
+    <form method="post">
+        {% csrf_token %}
+        {{ form.word_to_check.label_tag }}
+        {{ form.word_to_check }}
+        <button type="submit">Check</button>
+    </form>
+    {% if request.method == 'POST' %}
+        {% if correct %}
+            <p>Correct submission!</p>
+        {% else %}
+            <p>Incorrect submission.</p>
+        {% endif %}
+    {% endif %}
+    <img src="{{data.image_link}}" alt="Image Description" width ="300" height = "200">
+
+    
+
+</body>
+</html>
