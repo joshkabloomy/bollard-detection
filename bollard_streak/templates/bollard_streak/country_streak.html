@@ -1,28 +1,29 @@
+{% load static %} 
 <!DOCTYPE html>
 <html>
 <head>
     <title>Bollard Guesser</title>
+    <script src="{% static 'js/check_valid_country.js' %}"></script>
+
 </head>
 <body>
     <h1>Guess the Bollard! </h1>
 
-    
+
     {% if request.method == 'POST' %}
         <p>Correct, it was {{country}}!</p>
         <p>Bollard Streak: {{counter}}</p>
     {% endif %}
 
-    <form method="post">
+    <form method="post" id="form">
         {% csrf_token %}
         {{ form.word_to_check.label_tag }}
         <!-- {{ form.word_to_check }} -->
-        <input type="text" name="word_to_check">
-        <button type="submit">Check</button>
+        <input type="text" name="word_to_check" id="word_to_check_id">
+        <button>Check</button>
     </form>
     
-    <img src="{{data.image_link}}" alt="Image Description" width ="300" height = "200">
-
     
-
+    <img src="{{data.image_link}}" alt="Image Description" width ="300" height = "200">
 </body>
 </html>
