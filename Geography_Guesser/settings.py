@@ -50,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
 ]
 
 ROOT_URLCONF = 'Geography_Guesser.urls'
@@ -79,11 +80,11 @@ WSGI_APPLICATION = 'Geography_Guesser.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'user_data',      # Replace with your database name
-        'USER': 'joshkabloomy',   # Replace with your PostgreSQL username
-        'PASSWORD': 'BollardGuesser',  # Replace with your PostgreSQL password
-        'HOST': 'localhost',     # Use 'localhost' for local development
-        'PORT': '',              # Leave empty to use the default PostgreSQL port (5432)
+        'NAME': 'user_data',      
+        'USER': 'joshkabloomy',   
+        'PASSWORD': 'BollardGuesser',  
+        'HOST': 'localhost',    
+        'PORT': '',            
     }
 }
 
