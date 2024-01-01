@@ -4,12 +4,7 @@ import random
 from .forms import CheckCountry
 from django.http import HttpResponse
 
-#prev = ""
-#counter = 0
 def bollard_streak(request):
-    #global counter
-    #global prev
-
     # Session
     counter = request.session.get('counter', 0)
     if 'prev_pk' in request.session:

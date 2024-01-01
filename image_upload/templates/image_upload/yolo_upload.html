@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Geography Guesser</h1> 
-    <form id="upload-form" action="{% url 'image_upload' %}" method="post" enctype="multipart/form-data">
+    <form id="upload-form" action="{% url 'yolo_image_upload' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         
         <input type="file" name="image" id="image-input" accept="image/*">

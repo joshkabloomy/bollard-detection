@@ -1,11 +1,20 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Home Page</title>
+    <title>Bollard Guesser</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
-<body>
+<body id = "background" style= "background-image: url('static/images/background.png')">
+    <div class="navbar">
+        <a href="#" class="active">Home</a>
+        <a href="{% url 'opencv_image_upload' %}">Bollard Detection</a>
+        <a href="{% url 'yolo_image_upload' %}">Bollard Recognition</a>
+        <a href="{% url 'bollard_streak' %}">Bollard Streaks</a>
+    </div>
+
     <h1>Bollard Guesser</h1>
-    <!-- Add your content here -->
-    <a href="{% url 'image_upload' %}">Object Detection with Open CV Haarcascade</a>
+    
+   
 </body>
 </html>

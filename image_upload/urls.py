@@ -18,6 +18,8 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('upload/', views.image_upload, name='image_upload'),
-    path('success/', views.image_upload_success, name='image_upload_success'),
+    path('bollard_detection/upload/', views.opencv_image_upload, name='opencv_image_upload'),
+    path('bollard_detection/success/', views.opencv_image_upload_success, name='opencv_image_upload_success'),
+    path('bollard_recognition/upload/', views.yolo_image_upload, name='yolo_image_upload'),
+    path('bollard_recognition/success/', views.yolo_image_upload_success, name='yolo_image_upload_success'),
 ]

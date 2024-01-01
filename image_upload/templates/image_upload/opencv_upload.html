@@ -1,0 +1,19 @@
+{% load static %} 
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Geography Guesser</title>
+    <script src="{% static 'js/image_upload.js' %}"></script>
+</head>
+<body>
+    <h1>Geography Guesser</h1> 
+    <form id="upload-form" action="{% url 'opencv_image_upload' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <input type="file" name="image" id="image-input" accept="image/*">
+        <button type="submit">Upload Image</button>
+    </form>
+    <div id="image-preview"></div>
+</body>
+</html>
