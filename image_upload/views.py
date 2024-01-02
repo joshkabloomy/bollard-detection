@@ -25,24 +25,21 @@ def opencv_image_upload(request):
 
             # Perform OpenCV processing here (e.g., resizing)
             bollard_cascade = cv2.CascadeClassifier('./trained_haarscascade/haarcascade_bollardv3.xml')
-            resized = cv2.resize(img,(400,200))
-            resized = img
-            gray = cv2.cvtColor(resized,cv2.COLOR_BGR2GRAY)
-            bollards = bollard_cascade.detectMultiScale(gray,1.01, 10)
+            height, width = img.shape[:2]
+            # Resize the image while preserving the aspect ratio
+            resized_down = cv2.resize(img, (400, 200))
+
+            gray = cv2.cvtColor(resized_down,cv2.COLOR_BGR2GRAY)
+            bollards = bollard_cascade.detectMultiScale(gray, 1.01, 10)
             #print(bollards)
             for(x,y,w,h) in bollards:
-                cv2.rectangle(resized,(x,y),(x+w,y+h),(255,0,0),2)
+                cv2.rectangle(resized_down, (x,y),(x+w,y+h),(255,0,0),2)
                 print (x, y, w, h)
 
-            # cv2.imshow('img',resized)
-            # cv2.waitKey(0)
-            # cv2.destroyAllWindows()
-
-            # Save the processed image
-            # cv2.imwrite(image_path, img)
-            
+            resized_up = cv2.resize(resized_down, (width, height))
+            resized_up = cv2.resize(resized_up, (400, int(400 / (width/height)) ))
             # Convert processed image to a base64-encoded string
-            _, buffer = cv2.imencode('.png', img)
+            _, buffer = cv2.imencode('.png', resized_up)
             img_str = base64.b64encode(buffer).decode()
 
             return render(request, 'image_upload/opencv_success.html', {'processed_image': img_str})
@@ -85,9 +82,10 @@ def yolo_image_upload(request):
                 cv2.putText(img, label, (int(x1), int(y1 - 10)),
                             cv2.FONT_HERSHEY_SIMPLEX, 1.3, (0, 255, 0), 3, cv2.LINE_AA)
 
-            
+            height, width = img.shape[:2]
+            resized_down = cv2.resize(img, (400, int(400 / (width/height)) ))
             # Convert processed image to a base64-encoded string
-            _, buffer = cv2.imencode('.png', img)
+            _, buffer = cv2.imencode('.png', resized_down)
             img_str = base64.b64encode(buffer).decode()
 
             return render(request, 'image_upload/yolo_success.html', {'processed_image': img_str})

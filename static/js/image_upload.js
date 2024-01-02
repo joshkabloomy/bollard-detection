@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 const img = document.createElement('img');
                 img.src = e.target.result;
                 img.alt = 'Uploaded Image';
+                img.style.width = '400px'; 
+                img.style.height = 'auto'; // Maintain aspect ratio
                 imagePreview.innerHTML = '';
                 imagePreview.appendChild(img);
             };

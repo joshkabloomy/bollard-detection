@@ -1,12 +1,27 @@
+{% load static %} 
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Image Upload Success</title>
+    <title>Bollard Guesser - Bollard Recognition</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
-<body>
-    <h1>Image Upload Success</h1>
-    <p>Your image has been successfully uploaded and processed.</p>
-    <img src="data:image/png;base64,{{ processed_image }}" alt="Processed Image">
-    <a href="{% url 'yolo_image_upload' %}">Upload another image</a>
+<body class="subpage_background">
+    <div class="navbar">
+        <div class="logo"></div>
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'opencv_image_upload' %}">Bollard Detection</a>
+        <a href="{% url 'yolo_image_upload' %}" class="active">Bollard Recognition</a>
+        <a href="{% url 'bollard_streak' %}">Bollard Streaks</a>
+    </div>
+    <div class="centered-text">
+        <h2>Bollard Recognition</h2>
+    </div>
+    <h3>Your image has been successfully uploaded and processed.</h3>
+    <br>
+    <h3>
+        <img src="data:image/png;base64,{{ processed_image }}" alt="Processed Image">
+        <br>
+        <a href="{% url 'yolo_image_upload' %}">Upload another image</a>
+    </h3>
 </body>
 </html>

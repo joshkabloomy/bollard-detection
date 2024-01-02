@@ -3,17 +3,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Geography Guesser</title>
+    <title>Bollard Guesser - Bollard Recognition</title>
     <script src="{% static 'js/image_upload.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
-<body>
-    <h1>Geography Guesser</h1> 
-    <form id="upload-form" action="{% url 'yolo_image_upload' %}" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        
-        <input type="file" name="image" id="image-input" accept="image/*">
-        <button type="submit">Upload Image</button>
-    </form>
-    <div id="image-preview"></div>
+<body class="subpage_background">
+    <div class="navbar">
+        <div class="logo"></div>
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'opencv_image_upload' %}">Bollard Detection</a>
+        <a href="{% url 'yolo_image_upload' %}" class="active">Bollard Recognition</a>
+        <a href="{% url 'bollard_streak' %}">Bollard Streaks</a>
+    </div>
+    <div class="centered-text">
+        <h2>Bollard Recognition</h2>
+    </div>
+    <h3>
+        <form id="upload-form" action="{% url 'yolo_image_upload' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <input type="file" name="image" id="image-input" accept="image/*">
+            <button type="submit">Upload Image</button>
+        </form>
+        <div id="image-preview"></div>
+    </h3> 
 </body>
 </html>

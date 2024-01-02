@@ -19,7 +19,6 @@ document.addEventListener("DOMContentLoaded", function() {
             formDone.submit();
         } else {
             alert("Invalid Country: " + userInput);
-            alert(wordBank)
             inputElement.value = ""; 
         }
     }

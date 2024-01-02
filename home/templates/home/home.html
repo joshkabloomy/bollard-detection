@@ -5,15 +5,45 @@
     <title>Bollard Guesser</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
-<body id = "background" style= "background-image: url('static/images/background.png')">
+<body id = "home_background" style= "background-image: url('static/images/home_background.png')">
     <div class="navbar">
-        <a href="#" class="active">Home</a>
+        <div class="logo"></div>
+        <a href="{% url 'home' %}" class="active">Home</a>
         <a href="{% url 'opencv_image_upload' %}">Bollard Detection</a>
         <a href="{% url 'yolo_image_upload' %}">Bollard Recognition</a>
         <a href="{% url 'bollard_streak' %}">Bollard Streaks</a>
     </div>
+    <div class="centered-text">
+        <h1>Bollard Guesser</h1>
+    </div>
+    
+    <div class="centered-text">
+        <div>
+            <a href="{% url 'opencv_image_upload' %}">
+                <button class = "button">Bollard Detection</button>
+            </a>
+            <br>
+            <h3>Detect bollards in user uploaded images!</h3>
+        </div>
+        <br>
+        <div>
+            <a href="{% url 'yolo_image_upload' %}">
+                <button class = "button">Bollard Recognition</button>
+            </a>
+            <br>
+            <h3>Recognize country-specific bollards in user uploaded images!</h3>
 
-    <h1>Bollard Guesser</h1>
+        </div>
+        <br>
+        <div>
+            <a href="{% url 'bollard_streak' %}">
+                <button class = "button">Bollard Streaks</button>
+            </a>
+            <br>
+            <h3>Test your bollard skills through country-specific bollard streak game!</h3>
+        </div>
+    </div>
+
     
    
 </body>
