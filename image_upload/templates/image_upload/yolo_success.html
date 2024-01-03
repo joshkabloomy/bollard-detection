@@ -12,16 +12,26 @@
         <a href="{% url 'opencv_image_upload' %}">Bollard Detection</a>
         <a href="{% url 'yolo_image_upload' %}" class="active">Bollard Recognition</a>
         <a href="{% url 'bollard_streak' %}">Bollard Streaks</a>
+        <div class="right-icons">
+            <a href="https://www.geoguessr.com/user/604c5a52e142340001a0a666" target="_blank" class="profile" ></a>
+            <a href="https://discord.com/users/341617659223474198" target="_blank" class="discord"></a>
+        </div>
     </div>
     <div class="centered-text">
         <h2>Bollard Recognition</h2>
-    </div>
-    <h3>Your image has been successfully uploaded and processed.</h3>
-    <br>
-    <h3>
-        <img src="data:image/png;base64,{{ processed_image }}" alt="Processed Image">
         <br>
-        <a href="{% url 'yolo_image_upload' %}">Upload another image</a>
-    </h3>
+        <h3>Your image has been successfully uploaded and processed.</h3>
+        <br>
+        <h3>
+            <img src="data:image/png;base64,{{ processed_image }}" alt="Processed Image">
+            <br>
+            <a href="{% url 'yolo_image_upload' %}">Upload another image</a>
+        </h3>
+        <br>
+        <h3>Note: Inferencing on generic bollards may be confused with czechia due to their similarity and the lack of inferencing class of generic european bollards atm.
+            Feel free to send me bollard images to speeden the process of additional country bollards being added!
+        </h3>
+    </div>
+    
 </body>
 </html>

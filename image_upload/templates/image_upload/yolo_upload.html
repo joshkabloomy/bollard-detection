@@ -14,18 +14,34 @@
         <a href="{% url 'opencv_image_upload' %}">Bollard Detection</a>
         <a href="{% url 'yolo_image_upload' %}" class="active">Bollard Recognition</a>
         <a href="{% url 'bollard_streak' %}">Bollard Streaks</a>
+        <div class="right-icons">
+            <a href="https://www.geoguessr.com/user/604c5a52e142340001a0a666" target="_blank" class="profile" ></a>
+            <a href="https://discord.com/users/341617659223474198" target="_blank" class="discord"></a>
+        </div>
     </div>
     <div class="centered-text">
         <h2>Bollard Recognition</h2>
+        <br>
+        <h3>Upload an image of a bollard and this tool will identify which country the bollard comes from!</h3>
+        <br>
+        <h3 style="color:red;">Country bollards currently supported: France, Czechia / Slovakia, Poland, & Italy </h3>
+        <br>
+        <h3>
+            <form id="upload-form" action="{% url 'yolo_image_upload_success' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                <input type="file" name="image" id="image-input" accept="image/*">
+                <button type="submit">Upload Image</button>
+            </form>
+            <div id="image-preview"></div>
+        </h3> 
+        <br>
+        <center>
+            <h3>Example inference:</h3>
+            <br>
+            <img src="{% static 'images/inference.png' %}">
+        </center>
     </div>
-    <h3>
-        <form id="upload-form" action="{% url 'yolo_image_upload' %}" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            
-            <input type="file" name="image" id="image-input" accept="image/*">
-            <button type="submit">Upload Image</button>
-        </form>
-        <div id="image-preview"></div>
-    </h3> 
+    
 </body>
 </html>

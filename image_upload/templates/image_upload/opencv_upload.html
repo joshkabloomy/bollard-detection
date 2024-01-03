@@ -14,18 +14,33 @@
         <a href="{% url 'opencv_image_upload' %}" class="active">Bollard Detection</a>
         <a href="{% url 'yolo_image_upload' %}">Bollard Recognition</a>
         <a href="{% url 'bollard_streak' %}">Bollard Streaks</a>
+        <div class="right-icons">
+            <a href="https://www.geoguessr.com/user/604c5a52e142340001a0a666" target="_blank" class="profile" ></a>
+            <a href="https://discord.com/users/341617659223474198" target="_blank" class="discord"></a>
+        </div>
     </div>
     <div class="centered-text">
         <h2>Bollard Detection</h2>
+        <br>
+        <h3>Upload an image of a bollard and this tool will draw a square around the detected bollard!</h3>
+        <br>
+        <h3>
+            <form id="upload-form" action="{% url 'opencv_image_upload_success' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                <input type="file" name="image" id="image-input" accept="image/*">
+                <button type="submit">Upload Image</button>
+            </form>
+            <div id="image-preview"></div>
+        </h3>
+        <br>
+        <center>
+            <h3>Example detection:</h3>
+            <br>
+            <img src="{% static 'images/detect.png' %}">
+        </center>
     </div>
-    <h3>
-        <form id="upload-form" action="{% url 'opencv_image_upload' %}" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            
-            <input type="file" name="image" id="image-input" accept="image/*">
-            <button type="submit">Upload Image</button>
-        </form>
-        <div id="image-preview"></div>
-    </h3>
+    
+    
 </body>
 </html>
