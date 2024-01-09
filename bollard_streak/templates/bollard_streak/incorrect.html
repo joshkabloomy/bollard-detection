@@ -19,21 +19,31 @@
     </div>
     <div class="centered-text">
         <h2>Guess the Bollard!</h2>
+        <br>
+        <h2 style ="font-size:  medium;">
+            <p>Best bollard streak: {{best_streak}}!</p>
+        </h2>
+        <br>
+        <h3 class="red">
+        <p>Incorrect Country. The country was {{country}}!</p>
+        <p>Your bollard streak ended at {{counter}} countries!</p></p>
+        </h3>
+        <br>
+        <img src="{{data.image_link}}" alt="Image Description" width ="300" height = "200">
+        <br>
+        <button onclick="redirectToAnotherWebsite()">Restart</button>
+
+        <script>
+            function redirectToAnotherWebsite() {
+                var newWebsiteURL = '/bollard_streak'; 
+                window.location.href = newWebsiteURL;
+            }
+        </script>
+        
     </div>
 
     
-    <p>Incorrect Country. The country was {{country}}!</p>
-    <p>Your bollard streak was {{counter}}!</p></p>
-    <img src="{{data.image_link}}" alt="Image Description" width ="300" height = "200">
-    <br>
-    <button onclick="redirectToAnotherWebsite()">Restart</button>
 
-    <script>
-        function redirectToAnotherWebsite() {
-            var newWebsiteURL = '/bollard_streak'; 
-            window.location.href = newWebsiteURL;
-        }
-    </script>
 
 </body>
 </html>

@@ -29,6 +29,18 @@ h3 {
     background-color: rgb(245,245,245);
     display: inline-block;
 }
+h3.red {
+    color:#000;
+    font-size: 16px;
+    background-color: rgb(211, 24, 24);
+    display: inline-block;
+}
+h3.green {
+    color:#000;
+    font-size: 16px;
+    background-color: rgb(21, 210, 4);
+    display: inline-block;
+}
 .centered-text {
     text-align: center;
 }

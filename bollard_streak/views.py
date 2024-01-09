@@ -16,7 +16,7 @@ def bollard_streak(request):
 
     # Fetch image from sql database
     table_size = CountryStreak.objects.last().pk
-    r = random.randint(1, table_size) 
+    r = request.session.get('prev_pk') 
     data = CountryStreak.objects.get(pk=r)
     print(data.countries)
     
@@ -27,6 +27,10 @@ def bollard_streak(request):
         form = CheckCountry(request.POST)
         if form.is_valid():
             word_to_check = form.cleaned_data['word_to_check']
+            if word_to_check == "us" or word_to_check == "usa" or word_to_check == "u.s.a.":
+                word_to_check = "united states"
+            elif word_to_check == "uk":
+                word_to_check = "united kingdom"
             print(word_to_check + " | " + prev.countries)
             country = prev.countries
             lower_case_country = country.lower() #lowercase input
@@ -36,16 +40,21 @@ def bollard_streak(request):
                 counter += 1
                 request.session['counter'] = counter
                 correct = True
+                r = random.randint(1, table_size)
+                data = CountryStreak.objects.get(pk=r)
             else:
                 endstreak = counter
+                request.session['best_streak'] = max(request.session.get('best_streak',0), endstreak)
+                best_streak = request.session.get('best_streak')
                 request.session['counter'] = 0
                 correct = False
-                return render(request, 'bollard_streak/incorrect.html', {'data': prev, 'form': form, 'correct': correct, 'country': country, 'counter': endstreak})
+                return render(request, 'bollard_streak/incorrect.html', {'data': prev, 'form': form, 'correct': correct, 'country': country, 'counter': endstreak, 'best_streak': best_streak})
     else:
         form = CheckCountry()
     
     request.session['prev_pk'] = r # saves the last primary key
-    return render(request, 'bollard_streak/country_streak.html', {'data': data, 'form': form, 'correct': correct, 'country': country, 'counter': counter})
+    best_streak = max(request.session.get('best_streak',0), counter)
+    return render(request, 'bollard_streak/country_streak.html', {'data': data, 'form': form, 'correct': correct, 'country': country, 'counter': counter, 'best_streak': best_streak})
 
 
 

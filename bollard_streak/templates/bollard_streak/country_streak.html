@@ -21,23 +21,32 @@
     </div>
     <div class="centered-text">
         <h2>Guess the Bollard!</h2>
-    </div>
-
-
-    {% if request.method == 'POST' %}
+        <br>
+        {% if request.method == 'POST' %}
+        <br>
+        <h3 class="green">
         <p>Correct, it was {{country}}!</p>
-        <p>Bollard Streak: {{counter}}</p>
-    {% endif %}
-
-    <form method="post" id="form">
+        <p>Current Bollard Streak: {{counter}}</p>
+        </h3>
+        {% endif %}
+        <br>
+        <h3>
+        <form method="post" id="form">
         {% csrf_token %}
         {{ form.word_to_check.label_tag }}
         <!-- {{ form.word_to_check }} -->
         <input type="text" name="word_to_check" id="word_to_check_id">
         <button>Check</button>
-    </form>
+        </form>
+        
+        </h3>
+        <br>
+        <img src="{{data.image_link}}" alt="Image Description" width ="300" height = "200">
+        <br>
+        
+    </div>
+
+
     
-    
-    <img src="{{data.image_link}}" alt="Image Description" width ="300" height = "200">
 </body>
 </html>
