@@ -5,3 +5,4 @@ class CountryStreak(models.Model):
     image_link = models.CharField(max_length=200)
     class Meta: # define what the model name is
         db_table = 'country_table'
+        managed = False

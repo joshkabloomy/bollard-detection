@@ -27,7 +27,7 @@ def opencv_image_upload_success(request):
             bollard_cascade = cv2.CascadeClassifier('./trained_haarscascade/haarcascade_bollardv3.xml')
             height, width = img.shape[:2]
             # Resize the image while preserving the aspect ratio
-            resized_down = cv2.resize(img, (400, 200), interpolation=cv2.INTER_LINEAR)
+            resized_down = cv2.resize(img, (400, 200), interpolation=cv2.INTER_AREA)
             gray = cv2.cvtColor(resized_down,cv2.COLOR_BGR2GRAY)
             bollards = bollard_cascade.detectMultiScale(gray, 1.01, 5)
             #print(bollards)
@@ -54,7 +54,7 @@ def opencv_image_upload(request):
 
 model_path = './bollard_yolo/runs/detect/train/weights/last.pt'
 model = YOLO(model_path)  # load a custom model
-threshold = 0.3
+threshold = 0.5
  
 
 def yolo_image_upload_success(request):
@@ -67,20 +67,19 @@ def yolo_image_upload_success(request):
             nparr = np.fromstring(image_file.read(), np.uint8)
             raw_img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)  # Load image directly from memory
             height, width = raw_img.shape[:2]
-            img = cv2.resize(raw_img,(640,640))
+            img = cv2.resize(raw_img,(640,640),interpolation=cv2.INTER_AREA)
 
             # Perform inference on the image
             results = model(img)[0]
             conf = 0
             for result in results.boxes.data.tolist():
                 x1, y1, x2, y2, conf, class_id = result
-                    
-            if conf > threshold:
-                conf_score = round(conf, 2)
-                label = f"{results.names[int(class_id)]}: {conf_score}"
-                cv2.rectangle(img, (int(x1), int(y1)), (int(x2), int(y2)), (0, 255, 0), 4)
-                cv2.putText(img, label, (int(x1), int(y1 - 10)),
-                            cv2.FONT_HERSHEY_SIMPLEX, 1.3, (0, 255, 0), 3, cv2.LINE_AA)
+                if conf > threshold:
+                    conf_score = round(conf, 2)
+                    label = f"{results.names[int(class_id)]}: {conf_score}"
+                    cv2.rectangle(img, (int(x1), int(y1)), (int(x2), int(y2)), (0, 255, 0), 4)
+                    cv2.putText(img, label, (int(x1), int(y1 - 10)),
+                                cv2.FONT_HERSHEY_SIMPLEX, 1.3, (0, 255, 0), 3, cv2.LINE_AA)
 
             
             resized_down = cv2.resize(img, (400, int(400 / (width/height)) ))
